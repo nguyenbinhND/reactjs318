@@ -1,31 +1,42 @@
 import React from 'react';
+import Child from './Child';
+import AddComponents from './AddComponents';
 
 class Mycomponents extends React.Component {
+
     state = {
-        name: ' binh',
-        age: 18
+      
+        arrjob: [
+          {id: '1', title: " Developer", salary: '2000'},
+          {id: '2', title: " Tester", salary: '3000'},
+        ]
     }
-    
-    handelonchangeName = (event)=>{
-        this.setState({
-            name: event.target.value
-        })
+
+    addnewJob = (job)=>{
+      console.log('check job', job)
+      this.setState({
+        arrjob: [...this.state.arrjob, job]
+      })
     }
+   
     
     render(){
     
         return(
             <>
-            <div className='first'>
-                <input type="text" value={this.state.name} name="" id="" 
-                onChange={(event)=> this.handelonchangeName(event)}
-                />
-                 hello dan it , my name {this.state.name}</div>
-            <div> I am  {this.state.age}</div>
-            </>
-         
 
+            <AddComponents 
+            addnewJob = {this.addnewJob}
+            />
+           
+            <Child 
+            arrjob = {this.state.arrjob}
+            
+            />
+            </>
         )
+
+      
     }
 }
 
